@@ -16,4 +16,11 @@ Pour faciliter la gestion des routes, permettre de diviser les responsabilités 
 ### Question : Comment organiser les routes de manière cohérente ?
 Les routes doivent être organisées par fonctionnalité ou par ressource. Par exemple, toutes les routes liées aux cours peuvent être regroupées dans un fichier `courseRoutes.js`, tandis que les routes liées aux étudiants peuvent être regroupées dans un fichier `studentRoutes.js`. Cela permet de garder une structure claire et logique.
 
+### Question: Quelle est la différence entre un contrôleur et une route ?
+Un contrôleur gère la logique métier et les opérations sur les données, tandis qu'une route gère les requêtes HTTP et les réponses associées.
+
+### Question : Pourquoi séparer la logique métier des routes ?
+Séparer la logique métier des routes permet de rendre le code plus modulaire, maintenable et réutilisable.
+
+
 

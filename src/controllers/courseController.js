@@ -1,7 +1,7 @@
 // Question: Quelle est la différence entre un contrôleur et une route ?
-// Réponse:
+// Réponse: Un contrôleur gère la logique métier et les opérations sur les données, tandis qu'une route gère les requêtes HTTP et les réponses associées.
 // Question : Pourquoi séparer la logique métier des routes ?
-// Réponse :
+// Réponse : Séparer la logique métier des routes permet de rendre le code plus modulaire, maintenable et réutilisable.
 
 const { ObjectId } = require('mongodb');
 const db = require('../config/db');
