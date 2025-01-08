@@ -79,16 +79,16 @@ learning-platform-nosql/
 
 
 ## Les choix techniques 
-- **Choix de la base de données NoSQL**
+- **Choix de la base de données NoSQL:**
 Pour ce projet, nous avons choisi MongoDB comme base de données NoSQL en raison de sa flexibilité et de sa capacité à gérer des données non structurées.
 
-- **Choix du framework**
+- **Choix du framework:**
 Nous avons opté pour Express.js comme framework pour le développement de l'application.
 
-- **Choix du système de cache**
+- **Choix du système de cache:**
 Nous avons choisi Redis comme système de cache pour améliorer les performances de l'application. 
 
-- **Choix des outils de développement**
+- **Choix des outils de développement:**
 Nous avons utilisé Visual Studio Code comme éditeur de code.
 
 
@@ -96,14 +96,14 @@ Nous avons utilisé Visual Studio Code comme éditeur de code.
 ### Question: Quelles sont les informations sensibles à ne jamais commiter ?
 Toute information confidentielle inclut les mots de passe, les clés API, les jetons d'authentification, les informations de connexion à la base de données, etc.
 
-### Question: Pourquoi utiliser ded'environnement ?
+### Question: Pourquoi utiliser des variables d'environnement ?
 Les variables d'environnement permettent de séparer la configuration du code, de sécuriser les informations sensibles, et de faciliter le déploiement de l'application dans différents environnements (développement, test, production).
 
 ### Question: Pourquoi séparer les routes dans différents fichiers ?
 Pour faciliter la gestion des routes, permettre de diviser les responsabilités entre différents modules et mieux organiser le code, le rendre plus lisible et maintenable.
 
 ### Question : Comment organiser les routes de manière cohérente ?
-Les routes doivent être organisées par fonctionnalité ou par ressource. Par exemple, toutes les routes liées aux cours peuvent être regroupées dans ère les requêtes HTTP et les réponses associées.
+Les routes doivent être organisées par fonctionnalité ou par ressource. Par exemple, toutes les routes liées aux cours peuvent être regroupées dans un fichier `courseRoutes.js`, tandis que les routes liées aux étudiants peuvent être regroupées dans un fichier `studentRoutes.js`. Cela permet de garder une structure claire et logique.
 
 ### Question : Pourquoi séparer la logique métier des routes ?
 Séparer la logique métier des routes permet de rendre le code plus modulaire, maintenable et réutilisable.
