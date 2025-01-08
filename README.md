@@ -22,5 +22,16 @@ Un contrôleur gère la logique métier et les opérations sur les données, tan
 ### Question : Pourquoi séparer la logique métier des routes ?
 Séparer la logique métier des routes permet de rendre le code plus modulaire, maintenable et réutilisable.
 
+### Question: Pourquoi est-il important de valider les variables d'environnement au démarrage ?
+Pour s'assurer que toutes les configurations nécessaires sont présentes et correctes avant que l'application ne commence à fonctionner. 
+
+### Question: Que se passe-t-il si une variable requise est manquante ?
+Si une variable requise est manquante, l'application peut ne pas fonctionner correctement, ce qui peut entraîner des erreurs critiques, des pannes ou des comportements inattendus. En validant les variables d'environnement au démarrage, on peut lever une erreur explicative et arrêter l'exécution de l'application avant qu'elle ne cause des problèmes.
+
+### Question : Pourquoi créer un module séparé pour les connexions aux bases de données ?
+Pour centraliser et réutiliser le code de connexion. Cela facilite également la maintenance et l'évolution du code, ainsi que la gestion des erreurs et des configurations spécifiques à chaque base de données.
+
+### Question : Comment gérer proprement la fermeture des connexions ?
+Pour gérer proprement la fermeture des connexions, il est important d'écouter les événements de fin de processus (comme 'SIGINT' ou 'SIGTERM') et d'appeler les méthodes de fermeture des clients de base de données. 
 
 
