@@ -34,4 +34,26 @@ Pour centraliser et réutiliser le code de connexion. Cela facilite également l
 ### Question : Comment gérer proprement la fermeture des connexions ?
 Pour gérer proprement la fermeture des connexions, il est important d'écouter les événements de fin de processus (comme 'SIGINT' ou 'SIGTERM') et d'appeler les méthodes de fermeture des clients de base de données. 
 
+### Question: Pourquoi créer des services séparés ?
+Pour mieux organiser le code, de le rendre plus modulaire et réutilisable. Cela facilite également les tests unitaires et l'entretien du code en isolant les différentes responsabilités.
+
+### Question : Comment gérer efficacement le cache avec Redis ?
+Pour gérer efficacement le cache avec Redis, il est important de définir des politiques de cache claires, telles que les stratégies d'expiration (TTL), l'invalidation du cache et l'utilisation de structures de données appropriées. 
+
+Exemple : 
+Utiliser une stratégie d'expiration pour les données mises en cache :
+```javascript
+redisClient.setex('user:1234', 3600, JSON.stringify(userData)); 
+```
+La clé 'user:1234' expirera après 3600 secondes (1 heure)
+
+### Question: Quelles sont les bonnes pratiques pour les clés Redis ?
+Les bonnes pratiques pour les clés Redis incluent l'utilisation de noms de clés descriptifs et cohérents, l'utilisation de namespaces pour organiser les clés, et l'évitement des clés trop longues. Il est également recommandé d'utiliser des conventions de nommage qui facilitent la gestion et la recherche des clés.
+
+Exemple : 
+Utiliser des namespaces pour organiser les clés :
+- `user:1234` pour les données utilisateur
+- `session:abcd1234` pour les sessions
+
+
 
