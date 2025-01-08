@@ -55,5 +55,12 @@ Utiliser des namespaces pour organiser les clés :
 - `user:1234` pour les données utilisateur
 - `session:abcd1234` pour les sessions
 
+### Question: Comment organiser le point d'entrée de l'application ?
+Le point d'entrée de l'application doit être organisé de manière à initialiser toutes les configurations nécessaires avant de démarrer le serveur: la configuration des variables d'environnement, la connexion aux bases de données, la configuration des middlewares et le montage des routes.
+
+### Question: Quelle est la meilleure façon de gérer le démarrage de l'application ?
+La meilleure façon de gérer le démarrage de l'application est d'utiliser une fonction asynchrone qui encapsule toutes les étapes nécessaires pour démarrer le serveur. Pour gérer les erreurs de manière centralisée et d'assurer que toutes les connexions et configurations sont correctement initialisées.
+
+
 
 
