@@ -153,4 +153,5 @@ La meilleure façon de gérer le démarrage de l'application est d'utiliser une 
 ### Ajouter un nouveau cours
 Cette capture d'écran montre la requête POST à `/courses` avec les valeurs JSON nécessaires pour ajouter un nouveau cours.
 
-![Ajouter un nouveau cours](./screenshots/add_new_course.png)
+![Ajouter un nouveau cours](./screenshots/add_new_courses.png)
+
