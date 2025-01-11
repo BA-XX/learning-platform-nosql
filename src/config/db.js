@@ -13,7 +13,7 @@ async function connectMongo() {
   // Implémenter la connexion MongoDB
   // Gérer les erreurs et les retries
   try {
-    mongoClient = new MongoClient(config.mongodb.uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    mongoClient = new MongoClient(config.mongodb.uri);
     await mongoClient.connect();
     db = mongoClient.db(config.mongodb.dbName);
     console.log('Connexion à MongoDB réussie');
@@ -66,7 +66,8 @@ module.exports = {
   // Exporter les clients et fonctions utiles
   connectMongo,
   connectRedis,
-  mongoClient,
-  redisClient,
-  db
+  disconnectMongo,
+  disconnectRedis,
+  getDb: () => db,
+  getRedisClient: () => redisClient
 };
