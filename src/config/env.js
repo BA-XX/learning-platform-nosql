@@ -15,9 +15,8 @@ const requiredEnvVars = [
 // Validation des variables d'environnement
 function validateEnv() {
   // Implémenter la validation
-  // Si une variable manque, lever une erreur explicative
-
   requiredEnvVars.forEach((varName) => {
+      // Si une variable manque, lever une erreur explicative
     if (!process.env[varName]) {
       throw new Error(`La variable d'environnement ${varName} est manquante.`);
     }
@@ -32,5 +31,6 @@ module.exports = {
   redis: {
     uri: process.env.REDIS_URI
   },
-  port: process.env.PORT || 3000
+  port: process.env.PORT || 3000,
+  validateEnv
 };
