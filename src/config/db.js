@@ -10,16 +10,42 @@ const config = require('./env');
 let mongoClient, redisClient, db;
 
 async function connectMongo() {
-  // TODO: Implémenter la connexion MongoDB
+  // Implémenter la connexion MongoDB
   // Gérer les erreurs et les retries
+  try {
+    mongoClient = new MongoClient(config.mongodb.uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    await mongoClient.connect();
+    db = mongoClient.db(config.mongodb.dbName);
+    console.log('Connexion à MongoDB réussie');
+  } catch (error) {
+    console.error('Erreur de connexion à MongoDB :', error);
+    setTimeout(connectMongo, 5000); // Retry après 5 secondes
+  }
 }
 
 async function connectRedis() {
-  // TODO: Implémenter la connexion Redis
+  // Implémenter la connexion Redis
   // Gérer les erreurs et les retries
+  try {
+    redisClient = redis.createClient({ url: config.redis.uri });
+    redisClient.on('error', (err) => {
+      console.error('Erreur de connexion à Redis :', err);
+      setTimeout(connectRedis, 5000); // Retry après 5 secondes
+    });
+    await redisClient.connect();
+    console.log('Connexion à Redis réussie');
+  } catch (error) {
+    console.error('Erreur de connexion à Redis :', error);
+    setTimeout(connectRedis, 5000); // Retry après 5 secondes
+  }
 }
 
 // Export des fonctions et clients
 module.exports = {
-  // TODO: Exporter les clients et fonctions utiles
+  // Exporter les clients et fonctions utiles
+  connectMongo,
+  connectRedis,
+  mongoClient,
+  redisClient,
+  db
 };
