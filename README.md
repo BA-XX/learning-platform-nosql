@@ -146,3 +146,11 @@ Le point d'entrée de l'application doit être organisé de manière à initiali
 
 ### Question: Quelle est la meilleure façon de gérer le démarrage de l'application ?
 La meilleure façon de gérer le démarrage de l'application est d'utiliser une fonction asynchrone qui encapsule toutes les étapes nécessaires pour démarrer le serveur. Pour gérer les erreurs de manière centralisée et d'assurer que toutes les connexions et configurations sont correctement initialisées.
+
+
+## Captures d'écran
+
+### Ajouter un nouveau cours
+Cette capture d'écran montre la requête POST à `/courses` avec les valeurs JSON nécessaires pour ajouter un nouveau cours.
+
+![Ajouter un nouveau cours](./screenshots/add_new_course.png)
