@@ -12,11 +12,19 @@
 // 'session:abcd1234' pour les sessions
 // 'cache:homepage' pour les données mises en cache de la page d'accueil
 
+const db = require('../config/db');
+
 // Fonctions utilitaires pour Redis
 async function cacheData(key, data, ttl) {
-    // TODO: Implémenter une fonction générique de cache
+  // Implémenter une fonction générique de cache
+  try {
+    db.getRedisClient().set(key, JSON.stringify(data), "EX", ttl);
+  } catch (err) {
+    return null;
   }
-  
-  module.exports = {
-    // TODO: Exporter les fonctions utilitaires
-  };
+}
+
+module.exports = {
+  // Exporter les fonctions utilitaires
+  cacheData
+};
