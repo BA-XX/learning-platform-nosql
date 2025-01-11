@@ -40,6 +40,27 @@ async function connectRedis() {
   }
 }
 
+// Gestion propre de la fermeture des connexions
+async function disconnectMongo() {
+  // Implémenter la déconnexion MongoDB
+  try {
+    await mongoClient.close();
+    console.log('Déconnexion de MongoDB réussie');
+  } catch (error) {
+    console.error('Erreur de déconnexion de MongoDB :', error);
+  }
+}
+
+async function disconnectRedis() {
+  // Implémenter la déconnexion Redis
+  try {
+    await redisClient.quit();
+    console.log('Déconnexion de Redis réussie');
+  } catch (error) {
+    console.error('Erreur de déconnexion de Redis :', error);
+  }
+}
+
 // Export des fonctions et clients
 module.exports = {
   // Exporter les clients et fonctions utiles
