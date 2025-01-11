@@ -14,19 +14,45 @@ const app = express();
 
 async function startServer() {
   try {
-    // TODO: Initialiser les connexions aux bases de données
-    // TODO: Configurer les middlewares Express
-    // TODO: Monter les routes
-    // TODO: Démarrer le serveur
+    // Valider les variables d'environnement
+    config.validateEnv();
+    
+    // Initialiser les connexions aux bases de données
+    await db.connectMongo();
+    await db.connectRedis();
+
+    // Configurer les middlewares Express
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
+
+    // Monter les routes
+    app.use('/courses', courseRoutes);
+    app.use('/students', studentRoutes);
+
+    // Démarrer le serveur
+    const PORT = config.port || 3000;
+    app.listen(PORT, () => {
+      console.log(`Serveur démarré sur le port ${PORT}`);
+    });
+    
   } catch (error) {
-    console.error('Failed to start server:', error);
+    console.error('Erreur lors du démarrage du serveur:', error);
     process.exit(1);
   }
 }
 
 // Gestion propre de l'arrêt
 process.on('SIGTERM', async () => {
-  // TODO: Implémenter la fermeture propre des connexions
+  // Implémenter la fermeture propre des connexions
+  try {
+    await db.disconnectMongo();
+    await db.disconnectRedis();
+    console.log('Connexions aux bases de données fermées proprement.');
+    process.exit(0);
+  } catch (error) {
+    console.error('Erreur lors de la fermeture des connexions:', error);
+    process.exit(1);
+  }
 });
 
 startServer();
