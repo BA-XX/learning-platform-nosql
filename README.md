@@ -163,3 +163,12 @@ Cette capture d'écran montre la requête GET à `/courses/:id` pour récupérer
 La deuxième image montre que la même requête GET à `/courses/:id` lit les informations depuis le cache Redis.
 
 ![Récupérer un cours depuis le cache](./screenshots/get_course_info_from_cache.png)
+
+### Récupérer les statistiques des cours
+Cette capture d'écran montre la requête GET à `/courses/stats` pour récupérer les statistiques des cours. La première image montre que les statistiques sont récupérées depuis la base de données et ensuite mises en cache dans Redis.
+
+![Récupérer les statistiques des cours depuis la base de données](./screenshots/get_stats_from_db.png)
+
+La deuxième image montre que la même requête GET à `/courses/stats` lit les statistiques depuis le cache Redis.
+
+![Récupérer les statistiques d'un cours depuis le cache](./screenshots/get_stats_from_cache.png)
