@@ -52,9 +52,26 @@ async function getCourse(req, res) {
     res.status(500).json({ message: 'Erreur lors de la récupération du cours.', error: error.message });
   }
 }
-
 async function getCourseStats(req, res) {
+  // Implémenter la récupération des statistiques des cours
+  try {
+    const cachedStats = await redisService.getCachedData(collectionName + ":stats");
+    if (cachedStats) {
+      return res.status(200).json({ message: 'Statistiques des cours récupérées avec succès.', stats: cachedStats, fromCache: true });
+    }
 
+    const totalCourses = await mongoService.countDocuments(collectionName);
+    const coursesByInstructor = await mongoService.aggregate(collectionName, [
+      { $group: { _id: "$instructor", count: { $sum: 1 } } }
+    ]);
+
+    const stats = { totalCourses, coursesByInstructor };
+    await redisService.cacheData(collectionName + ":stats", stats, 3600);
+
+    res.status(200).json({ message: 'Statistiques des cours récupérées avec succès.', stats, fromCache: false });
+  } catch (error) {
+    res.status(500).json({ message: 'Erreur lors de la récupération des statistiques des cours.', error: error.message });
+  }
 }
 
 // Export des contrôleurs
