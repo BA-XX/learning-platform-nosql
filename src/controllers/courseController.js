@@ -21,7 +21,7 @@ async function createCourse(req, res) {
     }
 
     const newCourse = await mongoService.save(collectionName, { title, description, instructor });
-    await redisService.cacheData(collectionName + ":" + newCourse._id, newCourse , 3600);
+    await redisService.cacheData(collectionName + ":" + newCourse._id, newCourse, 3600);
 
     res.status(201).json({ message: 'Cours créé avec succès.', course: newCourse });
   } catch (error) {
@@ -31,7 +31,26 @@ async function createCourse(req, res) {
 }
 
 async function getCourse(req, res) {
+  // Implémenter la récupération d'un cours
+  // Utiliser les services pour la logique réutilisable
 
+  try {
+    const courseId = req.params.id;
+    const cachedCourse = await redisService.getCachedData(collectionName + ":" + courseId);
+    if (cachedCourse) {
+      return res.status(200).json({ message: 'Cours récupéré avec succès.', course: cachedCourse, fromCache: true });
+    }
+
+    const course = await mongoService.findOneById(collectionName, courseId);
+    if (!course) {
+      return res.status(404).json({ message: 'Cours non trouvé.' });
+    }
+
+    await redisService.cacheData(collectionName + ":" + courseId, course, 3600);
+    res.status(200).json({ message: 'Cours récupéré avec succès.', course, fromCache: false });
+  } catch (error) {
+    res.status(500).json({ message: 'Erreur lors de la récupération du cours.', error: error.message });
+  }
 }
 
 async function getCourseStats(req, res) {
