@@ -24,7 +24,18 @@ async function cacheData(key, data, ttl) {
   }
 }
 
+async function getCachedData(key) {
+  // Implémenter une fonction générique pour récupérer les données mises en cache
+  try {
+    const data = await db.getRedisClient().get(key);
+    return JSON.parse(data);
+  } catch (err) {
+    return null;
+  }
+}
+
 module.exports = {
   // Exporter les fonctions utilitaires
-  cacheData
+  cacheData,
+  getCachedData
 };
