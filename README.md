@@ -155,3 +155,11 @@ Cette capture d'écran montre la requête POST à `/courses` avec les valeurs JS
 
 ![Ajouter un nouveau cours](./screenshots/add_new_courses.png)
 
+### Récupérer les informations d'un cours par ID
+Cette capture d'écran montre la requête GET à `/courses/:id` pour récupérer les informations d'un cours par son ID. La première image montre que les informations sont récupérées depuis la base de données et ensuite mises en cache dans Redis.
+
+![Récupérer un cours depuis la base de données](./screenshots/get_course_info_from_db.png)
+
+La deuxième image montre que la même requête GET à `/courses/:id` lit les informations depuis le cache Redis.
+
+![Récupérer un cours depuis le cache](./screenshots/get_course_info_from_cache.png)
